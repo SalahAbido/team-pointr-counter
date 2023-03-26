@@ -17,6 +17,7 @@ class TeamColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size=MediaQuery.of(context).size;
     return Column(
       children: [
         Text(
@@ -27,7 +28,9 @@ class TeamColumn extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 30.0),
           child: Text(
             "${Name == "A" ? context.watch<MyProvider>().counterA : context.watch<MyProvider>().counterB}",
-            style: Theme.of(context).textTheme.headline1,
+            style: TextStyle(
+              color: Colors.black,fontWeight: FontWeight.normal,fontSize: size.width*0.35
+            ),
           ),
         ),
         Button(

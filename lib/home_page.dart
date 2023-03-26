@@ -49,7 +49,7 @@ class MyHomePage extends StatelessWidget {
               ],
             ),
             ElevatedButton(
-                onPressed: () => Provider.of<MyProvider>(context,listen: false).resetCounter(),
+                onPressed: () => context.read<MyProvider>().resetCounter(),
                 style: ButtonStyle(
                     fixedSize: MaterialStatePropertyAll(
                         Size.fromWidth(size.width * 0.4)),
