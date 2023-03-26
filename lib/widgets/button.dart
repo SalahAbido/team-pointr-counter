@@ -8,10 +8,11 @@ final Function()onpress;
     Size size = MediaQuery.of(context).size;
     return ElevatedButton(
         onPressed: onpress,
-        style: ButtonStyle(
+        style: const ButtonStyle(
             // fixedSize: MaterialStatePropertyAll(
             //     Size.fromWidth(size.width * 0.2)),
-            backgroundColor: const MaterialStatePropertyAll(Colors.teal)),
+          elevation:MaterialStatePropertyAll(10.0) ,
+            backgroundColor: MaterialStatePropertyAll(Colors.teal)),
         child:
         Text(text, style: Theme.of(context).textTheme.bodyText1));
   }

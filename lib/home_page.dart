@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:team_point_counter/my_provider.dart';
 import 'package:team_point_counter/widgets/button.dart';
 import 'package:team_point_counter/widgets/column.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int counterA = 0;
+ /* int counterA = 0;
 
   int counterB = 0;
 
@@ -19,7 +16,7 @@ class _MyHomePageState extends State<MyHomePage> {
       counterA = 0;
       counterB = 0;
     });
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                TeamColumn(Name: "A", counter: counterA),
-                Container(
+                TeamColumn(Name: "A",),
+                const SizedBox(
                   height: 450,
                   child: VerticalDivider(
                     thickness: 1,
@@ -48,11 +45,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.black26,
                   ),
                 ),
-                TeamColumn(Name: "B", counter: counterB),
+                TeamColumn(Name: "B",),
               ],
             ),
             ElevatedButton(
-                onPressed: () => ResetCounter(),
+                onPressed: () => Provider.of<MyProvider>(context,listen: false).resetCounter(),
                 style: ButtonStyle(
                     fixedSize: MaterialStatePropertyAll(
                         Size.fromWidth(size.width * 0.4)),

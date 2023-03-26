@@ -1,64 +1,53 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../my_provider.dart';
 import 'button.dart';
 
-class TeamColumn extends StatefulWidget {
-  TeamColumn({Key? key, required this.Name, required this.counter})
-      : super(key: key);
+class TeamColumn extends StatelessWidget {
+  TeamColumn({
+    Key? key,
+    required this.Name,
+    // required this.counter,
+  }) : super(key: key);
   final String Name;
 
-  int counter;
-
-  @override
-  State<TeamColumn> createState() => _TeamColumnState();
-}
-
-class _TeamColumnState extends State<TeamColumn> {
-  addOnePoint() {
-    setState(() {
-      widget.counter = widget.counter + 1;
-    });
-  }
-
-  addTowPoint() {
-    setState(() {
-      widget.counter = widget.counter + 2;
-    });
-  }
-
-  addThreePoint() {
-    setState(() {
-      widget.counter = widget.counter + 3;
-    });
-  }
+  // int counter;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          "Team ${widget.Name}",
+          "Team ${Name}",
           style: Theme.of(context).textTheme.headline2,
         ),
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 30.0),
+          padding: const EdgeInsets.symmetric(vertical: 30.0),
           child: Text(
-            widget.counter.toString(),
+            "${Name == "A" ? context.watch<MyProvider>().counterA : context.watch<MyProvider>().counterB}",
             style: Theme.of(context).textTheme.headline1,
           ),
         ),
         Button(
           text: "Add 1 Point",
-          onpress: () => addOnePoint(),
+          onpress: () {
+            // context.watch<MyProvider>();
+            context.read<MyProvider>().addOnePoint(Name == "A" ? 0 : 1);
+          },
         ),
         Button(
           text: "Add 2 Point",
-          onpress: addTowPoint,
+          onpress: () {
+            context.read<MyProvider>().addTowPoint(Name == "A" ? 0 : 1);
+          },
         ),
         Button(
           text: "Add 3 Point",
-          onpress: () => addThreePoint(),
+          onpress: () {
+            context.read<MyProvider>().addThreePoint(Name == "A" ? 0 : 1);
+          },
         ),
       ],
     );

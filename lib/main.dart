@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:team_point_counter/my_provider.dart';
 
 import 'home_page.dart';
 
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           // primarySwatch: Colors.teal,
-        dividerColor: Colors.blue,
+          dividerColor: Colors.blue,
           appBarTheme: const AppBarTheme(
               color: Colors.teal,
               titleTextStyle: TextStyle(color: Colors.white, fontSize: 20.0)),
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
                 fontSize: 200.0),
             bodyText1: TextStyle(
                 fontWeight: FontWeight.normal,
-                color: Colors.black,
+                color: Colors.white,
                 fontSize: 15.0),
             bodyText2: TextStyle(
                 fontWeight: FontWeight.normal,
@@ -38,7 +40,10 @@ class MyApp extends StatelessWidget {
                 color: Colors.black,
                 fontSize: 30.0),
           )),
-      home: MyHomePage(),
+      home: ChangeNotifierProvider<MyProvider>(
+        create: (context) =>  MyProvider(),
+        child: MyHomePage(),
+      ),
     );
   }
 }
